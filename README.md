@@ -27,25 +27,23 @@ This module introduces the concept of **Command-Line Arguments**. You will learn
 *The following section explains the core concepts required to solve each exercise. It focuses on the fundamental logic of C programming, emphasizing parameter parsing and terminal output.*
 
 ### 🔹 Parsing Arguments
-
 | Exercise | Concept & Logic |
 | :--- | :--- |
-| **[`ex00: ft_print_program_name`](ex00)** | **The Zero Index:** Writing a program that displays its own executable name. <br><br>**Logic:** When a C program runs, the very first string passed to the `argv` array (`argv[0]`) is always the path or name of the executable itself. We simply need to iterate through the `argv[0]` string and write its characters to the terminal, followed by a newline `\n`. |
-| **[`ex01: ft_print_params`](ex01)** | **Iterating Vectors:** Displaying all given arguments in the order they were passed. <br><br>**Logic:** The `argc` variable tells us exactly how many arguments exist. We create a `while` loop starting at index `1` (to explicitly skip the program name at `argv[0]`) and run it until `i < argc`. For each iteration, we print the string located at `argv[i]` followed by a newline. |
-| **[`ex02: ft_rev_params`](ex02)** | **Reverse Iteration:** Displaying all given arguments in reverse order. <br><br>**Logic:** This relies on the same logic as `ex01`, but instead of incrementing, we set our counter to start at the very last argument (`argc - 1`). We loop backwards, decrementing `i` until it hits `1`, printing each string and a newline. We must still ignore `argv[0]`. |
+| **[`ex00: ft_print_program_name`](ex00)** | **The Zero Index:** Writing a program that displays its own executable name. <br><br>**Logic:** When a C program runs, the very first string passed to the `argv` array (`argv[0]`) is always the path or name of the executable itself. *Safe Iteration:* Instead of mutating the original pointer, we iterate through the `argv[0]` string using a secondary integer index (`argv[0][i]`) and write its characters to the terminal, followed by a newline `\n`. |
+| **[`ex01: ft_print_params`](ex01)** | **Iterating Vectors:** Displaying all given arguments in the order they were passed. <br><br>**Logic:** The `argc` variable tells us exactly how many arguments exist. We create a `while` loop starting at index `1` (to explicitly skip the program name at `argv[0]`) and run it until `i < argc`. For each iteration, we use a safe secondary index (`argv[i][j]`) to print the characters of the string located at `argv[i]`, followed by a newline. |
+| **[`ex02: ft_rev_params`](ex02)** | **Reverse Iteration:** Displaying all given arguments in reverse order. <br><br>**Logic:** This relies on the same safe iteration logic as `ex01`, but instead of incrementing, we set our counter to start at the very last argument (`argc - 1`). We loop backwards, decrementing `i` until it hits `1`, printing each string and a newline. We must still ignore `argv[0]`. |
 
 ### 🔢 Sorting & Algorithms
-
 | Exercise | Concept & Logic |
 | :--- | :--- |
-| **[`ex03: ft_sort_params`](ex03)** | **ASCII Sorting:** Displaying all arguments sorted in strict ASCII order. <br><br>**Logic:** We need to sort an array of strings. We can implement a classic Bubble Sort algorithm. We iterate through the `argv` array (starting from index `1`). We use a custom `ft_strcmp` helper function to mathematically compare adjacent strings. If a string is "greater" than the one next to it, we swap their pointer positions in the `argv` array. Once the array is fully sorted, we loop through it one last time to print the results. |
+| **[`ex03: ft_sort_params`](ex03)** | **ASCII Sorting:** Displaying all arguments sorted in strict ASCII order. <br><br>**Logic:** We need to sort an array of strings. We can implement a classic Bubble Sort algorithm. We iterate through the `argv` array (starting from index `1`). We use a custom `ft_strcmp` helper function to mathematically compare adjacent strings. If a string is "greater" than the one next to it, we swap their pointer positions in the `argv` array. Once the array is fully sorted, we loop through it one last time to safely print the results. |
 
 ---
 
 ## 🛠️ Instructions
 
 ### 🧪 Compilation & Testing
-Unlike previous modules where you wrote isolated functions, every exercise in C 06 is a complete program requiring its own `int main(int argc, char **argv)` function. 
+Unlike previous modules where you wrote isolated functions, every exercise in C 06 is a complete program requiring its own `int main(int argc, char **argv)` function.
 
 Because each file has its own `main`, **you cannot compile them together or use a master tester file.** You must compile and execute each program individually.
 
@@ -80,7 +78,7 @@ Because each file has its own `main`, **you cannot compile them together or use 
    ```
 
 ### 🚨 The Norm
-Moulinette relies on a program called `norminette` to check if your files comply with the Norm. Every single `.c` and `.h` file must pass. 
+Moulinette relies on a program called `norminette` to check if your files comply with the Norm. Every single `.c` and `.h` file must pass.
 
 **The 42 Header:**
 Before writing any code, every file must start with the standard 42 header. `norminette` will automatically fail any file missing this specific signature.
