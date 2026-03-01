@@ -48,10 +48,20 @@ Unlike previous modules where you wrote isolated functions, every exercise in C 
 Because each file has its own `main`, **you cannot compile them together or use a master tester file.** You must compile and execute each program individually.
 
 1. **Clone the repository:**
+   You can clone this module directly, or pull the entire 42 Piscine parent repository which includes this module as a submodule.
+
+   **Option A: Clone this module directly**
    ```bash
-   git clone <your_repository_link>
+   git clone git@github.com:rfs-hybrid-42-piscine/C-06.git C-06
+   cd C-06
+   ```
+
+   **Option B: Clone the parent repository (with submodules)**
+   ```bash
+   git clone --recurse-submodules git@github.com:rfs-hybrid/42-Piscine.git 42-Piscine
    cd 42-Piscine/C-06
    ```
+   *(Note: The `--recurse-submodules` flag ensures all nested module repositories are populated immediately.)*
 
 2. **Test Exercise 00 (Program Name):**
    ```bash
